@@ -484,7 +484,6 @@ class Bot(BaseBot):
     async def start_announcement_loop(self) -> None:
         announcements = [
             "🎭 <color=#00FFFF><b>Having fun?</b></color> Type a number between <color=#FFA500><b>1 - 254</b></color> to perform an emote! e.g. <color=#FFD700><b>1, 2, 3</b></color> — Type <color=#FF00FF><b>!list</b></color> to see all emotes & <color=#FF0000><b>!stop</b></color> to stop! 🕺💃",
-            "💎 <color=#FFD700><b>TIP 500g+</b></color> to the Bot to become a <color=#FF0000><b>Permanent VIP</b></color>! 👑 Or <color=#00FF00><b>TIP the Jar</b></color> and DM the <color=#FF00FF><b>Owner</b></color> or <color=#00FFFF><b>MOD</b></color>! 🎁",
             "💡 <color=#00FF00><b>Need help?</b></color> Type <color=#00FFFF><b>!help</b></color> for all commands! VIPs type <color=#FFD700><b>!vip</b></color> for the VIP lounge & DJs type <color=#FF00FF><b>!dj</b></color> for the DJ booth! Type <color=#FFA500><b>F1</b></color> to go to Floor 1! 🌟"
         ]
         while True:
