@@ -657,7 +657,7 @@ class Bot(BaseBot):
 
         elif clean_msg == "!down" and (is_vip or is_owner or user.id in self.vip_guests):
             try:
-                await self.highrise.teleport(user.id, self.ground_spawn_position)
+                await self.highrise.teleport(user.id, Position(0.0, 2.0, 27.0, "FrontRight"))
                 self.vip_guests.discard(user.id)
             except Exception:
                 pass
@@ -685,7 +685,11 @@ class Bot(BaseBot):
                 pass
             return
 
-        elif clean_msg == "!top":
+        # --- EVERYTHING BELOW THIS LINE IS OWNER ONLY ---
+        if not is_owner:
+            return
+
+        if clean_msg == "!top":
             sorted_tippers = sorted(self.tip_data.items(), key=lambda x: x[1]['total_tips'], reverse=True)[:10]
             formatted = [f"{i+1}. {d['username']} ({d['total_tips']}g)" for i, (_, d) in enumerate(sorted_tippers)]
             leaderboard_text = "\n".join(formatted)
@@ -701,11 +705,7 @@ class Bot(BaseBot):
                 pass
             return
 
-        # --- EVERYTHING BELOW THIS LINE IS OWNER ONLY ---
-        if not is_owner:
-            return
-
-        if clean_msg.startswith("!giveowner ") and user.username.lower() == self.owner_username.lower():
+        elif clean_msg.startswith("!giveowner ") and user.username.lower() == self.owner_username.lower():
             try:
                 target_name = clean_msg.split("@")[1].strip()
                 room_users = await self.highrise.get_room_users()
